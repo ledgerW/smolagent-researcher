@@ -8,6 +8,11 @@ authors = ["Ledger <ledger.west@gmail.com>"]
 python = ">=3.10.0,<3.12"
 fastapi = "^0.112.0"
 uvicorn = "0.23.2"
+arize-phoenix-otel = "^0.7.1"
+openinference-instrumentation-smolagents = "^0.1.5"
+smolagents = {extras = ["litellm"], version = "^1.9.2"}
+python-dotenv = "^1.0.1"
+openinference-instrumentation = "^0.1.22"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

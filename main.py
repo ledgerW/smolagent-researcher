@@ -2,6 +2,8 @@ from typing import Union
 
 from fastapi import FastAPI
 
+from agent import manager_agent
+
 app = FastAPI()
 
 @app.get("/")
@@ -9,6 +11,6 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.post("/task_manager_agent")
+def task_manager_agent(task: str) -> str:
+    return manager_agent.run(task)
