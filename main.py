@@ -16,6 +16,7 @@ class TaskOutput(BaseModel):
 
 app = FastAPI(title='Research Agents', version='0.1.0')
 
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}

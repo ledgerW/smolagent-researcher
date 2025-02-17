@@ -4,6 +4,8 @@ load_dotenv()
 import os
 from phoenix.otel import register
 from openinference.instrumentation.smolagents import SmolagentsInstrumentor
+import yaml
+import pathlib
 
 from smolagents import (
     CodeAgent,
@@ -22,6 +24,18 @@ tracer_provider = register(
 
 SmolagentsInstrumentor().instrument(tracer_provider=tracer_provider)
 
+
+class CustomToolCallingAgent(ToolCallingAgent):
+    def __init__(self, *args, **kwargs):
+        # Load custom prompt templates from local YAML
+        custom_prompt_templates = yaml.safe_load(
+            pathlib.Path("modified_toolcalling_agent.yaml").read_text()
+        )
+        kwargs["prompt_templates"] = custom_prompt_templates
+        super().__init__(*args, **kwargs)
+
+
+
 # LLM
 claude_llm = LiteLLMModel(
     "anthropic/claude-3-5-sonnet-latest",
@@ -30,16 +44,17 @@ claude_llm = LiteLLMModel(
     api_key=os.getenv("ANTHROPIC_API_KEY")
 )
 
+
 # Tool Calling Agents
-web_agent = ToolCallingAgent(
+web_agent = CustomToolCallingAgent(
     tools=[DuckDuckGoSearchTool(), VisitWebpageTool()],
     model=claude_llm,
-    max_steps=10,
+    max_steps=5,
     name="web_search",
     description="Runs web searches for you. Give it your query as an argument."
 )
 
-newsletter_agent = ToolCallingAgent(
+newsletter_agent = CustomToolCallingAgent(
     tools=[ai_policy_geopolitics_semantic_search],
     model=claude_llm,
     max_steps=5,
@@ -47,7 +62,7 @@ newsletter_agent = ToolCallingAgent(
     description="Use this tool to search curated newsletters by thought-leaders in the fields of AI, Policy, Geopolitics, and Security."
 )
 
-arxiv_agent = ToolCallingAgent(
+arxiv_agent = CustomToolCallingAgent(
     tools=[arxiv_tool],
     model=claude_llm,
     max_steps=5,
@@ -55,7 +70,7 @@ arxiv_agent = ToolCallingAgent(
     description="Use this tool to search Arxiv for papers on AI, Policy, Geopolitics, and Security."
 )
 
-yahoo_finance_agent = ToolCallingAgent(
+yahoo_finance_agent = CustomToolCallingAgent(
     tools=[yahoo_finance_search],
     model=claude_llm,
     max_steps=5,
@@ -63,9 +78,12 @@ yahoo_finance_agent = ToolCallingAgent(
     description="Use this tool to search for financial data for publicly traded companies. Input must be a ticker symbol. Example: 'AAPL'."
 )
 
+
+# Manager CodeAgent
 manager_agent = CodeAgent(
     tools=[],
     model=claude_llm,
     managed_agents=[web_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent],
-    additional_authorized_imports=["time", "numpy", "pandas"]
+    additional_authorized_imports=["time", "numpy", "pandas"],
+    planning_interval=2
 )
