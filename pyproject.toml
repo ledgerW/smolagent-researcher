@@ -6,13 +6,21 @@ authors = ["Ledger <ledger.west@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.12"
-fastapi = "^0.112.0"
+fastapi = "^0.115.2"
 uvicorn = "0.23.2"
 arize-phoenix-otel = "^0.7.1"
 openinference-instrumentation-smolagents = "^0.1.5"
 smolagents = {extras = ["litellm"], version = "^1.9.2"}
 python-dotenv = "^1.0.1"
 openinference-instrumentation = "^0.1.22"
+langchain-pinecone = "^0.2.3"
+langchain-openai = "^0.3.6"
+langchain-core = "^0.3.35"
+pydantic = "^2.10.6"
+langchain-community = "^0.3.17"
+arxiv = "^2.1.3"
+yfinance = "^0.2.53"
+google-search-results = "^2.4.2"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
