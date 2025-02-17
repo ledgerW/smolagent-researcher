@@ -3,7 +3,6 @@ import os
 from smolagents import tool, Tool
 from pinecone import Pinecone
 from langchain_openai import OpenAIEmbeddings
-from langchain_pinecone import PineconeVectorStore
 from langchain_core.documents import Document
 from langchain.agents import load_tools
 from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
@@ -30,17 +29,6 @@ def ai_policy_geopolitics_semantic_search(
         query: The query to search for.
         k: The number of documents to return.
     """
-    #vector_store = PineconeVectorStore(index=index, namespace=namespace, embedding=embeddings)
-    #retriever = vector_store.as_retriever(search_kwargs={"k": k})
-    #docs = retriever.invoke(query)
-    #formatted_docs = []
-    #for i, doc in enumerate(docs, 1):
-    #    formatted_docs.append(
-    #        f"\nDocument {i}:"
-    #        f"\nContent:\n{doc.page_content}"
-    #        f"\nMetadata:\n{doc.metadata}\n"
-    #    )
-    #return "\n\n".join(formatted_docs)
     response = index.query(
         namespace=namespace,
         vector=embeddings.embed_query(query),
@@ -62,20 +50,17 @@ def ai_policy_geopolitics_semantic_search(
 
 
 @tool
-def yahoo_finance_search(query: str) -> str:
+def yahoo_finance_search(company_ticker: str) -> str:
     """
-    Use this tool to search for financial news and information from Yahoo Finance.
-    This tool returns relevant news articles and financial information based on your query.
+    Use this tool to search for financial data for publicly traded companies.
+    Input must be a ticker symbol.
     
     Args:
-        query: The search query for finding financial news and information.
+        company_ticker: The ticker of the company to search for. Example: "AAPL".
     """
     tool = YahooFinanceNewsTool()
-    return tool.invoke(query)
+    return tool.invoke(company_ticker)
 
 
 # Arxive Tool
 arxiv_tool = Tool.from_langchain(load_tools(["arxiv"])[0])
-
-# Yahoo Finance Tool
-#google_finance_tool = Tool.from_langchain(load_tools(["google-finance"])[0])

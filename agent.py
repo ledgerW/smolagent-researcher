@@ -60,7 +60,7 @@ yahoo_finance_agent = ToolCallingAgent(
     model=claude_llm,
     max_steps=5,
     name="yeahoo_finance_search",
-    description="Use this tool to search for financial news and information from Yahoo Finance"
+    description="Use this tool to search for financial data for publicly traded companies. Input must be a ticker symbol. Example: 'AAPL'."
 )
 
 manager_agent = CodeAgent(
