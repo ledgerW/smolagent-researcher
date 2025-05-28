@@ -1,0 +1,3 @@
+- Always review your .clinerules and memory-bank folders for guidance and project status, respectively.
+- Use emojis and mermaid diagrams generously in documentation.
+- Only use git commands when explicitly requested.
