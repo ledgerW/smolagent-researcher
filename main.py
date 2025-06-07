@@ -1,17 +1,15 @@
-import os
-import requests
-from typing import Union, Dict, Annotated
-from pydantic import BaseModel
+from typing import Annotated
+from pydantic import BaseModel, Field
 from fastapi import FastAPI
 
 from agent import manager_agent
 
 
 class TaskInput(BaseModel):
-    task: Annotated[str, ..., "The task to be performed"]
+    task: Annotated[str, Field(..., description="The task to be performed")]
 
 class TaskOutput(BaseModel):
-    output: Annotated[str, ..., "The result of the task"]
+    output: Annotated[str, Field(..., description="The result of the task")]
 
 
 app = FastAPI(title='Research Agents', version='0.1.0')
