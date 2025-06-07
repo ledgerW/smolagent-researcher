@@ -271,7 +271,7 @@ new_agent = CustomToolCallingAgent(
 manager_agent = CodeAgent(
     tools=[],
     model=claude_llm,
-    managed_agents=[web_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent, new_agent],
+    managed_agents=[web_search_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent, new_agent],
     additional_authorized_imports=["time", "numpy", "pandas"],
     planning_interval=2
 )
