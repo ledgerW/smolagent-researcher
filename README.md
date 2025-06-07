@@ -140,6 +140,22 @@ Optional web interface for interacting with the system, providing a user-friendl
 - 🔍 **Vector search**: Semantic search for curated newsletters on AI policy
 - 📚 **Academic research**: Integration with Arxiv for scientific papers
 - 💹 **Financial data**: Integration with Yahoo Finance for company information
+- 🌐 **GDELT access**: Query global event and entity data via GDELT v2/v3 APIs
+
+## 🌐 GDELT Integration
+
+```mermaid
+flowchart TD
+    Tool[Research Tools] --> GDELT[GDELT API]
+```
+
+
+```python
+from gdelt_v2 import query_doc
+res = await query_doc(query="Ukraine", start="20250101000000", end="20250102000000")
+```
+
+- [Official GDELT Documentation](https://www.gdeltproject.org/)
 
 ## 🚀 Getting Started
 
@@ -255,7 +271,7 @@ new_agent = CustomToolCallingAgent(
 manager_agent = CodeAgent(
     tools=[],
     model=claude_llm,
-    managed_agents=[web_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent, new_agent],
+    managed_agents=[web_search_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent, new_agent],
     additional_authorized_imports=["time", "numpy", "pandas"],
     planning_interval=2
 )

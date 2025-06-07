@@ -46,11 +46,11 @@ claude_llm = LiteLLMModel(
 
 
 # Tool Calling Agents
-web_agent = CustomToolCallingAgent(
+web_search_agent = CustomToolCallingAgent(
     tools=[DuckDuckGoSearchTool(), VisitWebpageTool()],
     model=claude_llm,
     max_steps=5,
-    name="web_search",
+    name="web_search_agent",
     description="Runs web searches for you. Give it your query as an argument."
 )
 
@@ -83,7 +83,7 @@ yahoo_finance_agent = CustomToolCallingAgent(
 manager_agent = CodeAgent(
     tools=[],
     model=claude_llm,
-    managed_agents=[web_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent],
+    managed_agents=[web_search_agent, newsletter_agent, arxiv_agent, yahoo_finance_agent],
     additional_authorized_imports=["time", "numpy", "pandas"],
     planning_interval=2
 )
