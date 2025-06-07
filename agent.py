@@ -38,7 +38,7 @@ class CustomToolCallingAgent(ToolCallingAgent):
 
 # LLM
 claude_llm = LiteLLMModel(
-    "anthropic/claude-3-5-sonnet-latest",
+    "anthropic/claude-sonnet-4-20250514",
     temperature=0.1,
     max_tokens=2000,
     api_key=os.getenv("ANTHROPIC_API_KEY")

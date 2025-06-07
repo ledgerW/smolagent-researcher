@@ -148,7 +148,7 @@ Optional web interface for interacting with the system, providing a user-friendl
 - Python 3.10+ 🐍
 - Poetry (for dependency management) 📦
 - API keys for:
-  - Anthropic (Claude) 🤖
+  - Anthropic (Claude Sonnet 4 - 20250514) 🤖
   - Pinecone 🌲
   - OpenAI (for embeddings) 🧠
 
