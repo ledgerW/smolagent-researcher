@@ -74,7 +74,7 @@ yahoo_finance_agent = CustomToolCallingAgent(
     tools=[yahoo_finance_search],
     model=claude_llm,
     max_steps=5,
-    name="yeahoo_finance_search",
+    name="yahoo_finance_search",
     description="Use this tool to search for financial data for publicly traded companies. Input must be a ticker symbol. Example: 'AAPL'."
 )
 
