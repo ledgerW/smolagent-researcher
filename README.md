@@ -1,9 +1,9 @@
 # 🔍 Smolagent Researcher
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115.2-009688.svg)](https://fastapi.tiangolo.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115.12-009688.svg)](https://fastapi.tiangolo.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Smolagents](https://img.shields.io/badge/Smolagents-1.9.2-orange.svg)](https://github.com/smolagents/smolagents)
+[![Smolagents](https://img.shields.io/badge/Smolagents-1.17.0-orange.svg)](https://github.com/smolagents/smolagents)
 
 🤖 A powerful AI research assistant built with the smolagents framework that helps with research tasks across multiple domains including AI policy, technical research, and macroeconomics.
 
