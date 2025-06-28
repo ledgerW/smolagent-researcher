@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-template"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Ledger <ledger.west@gmail.com>"]
 
